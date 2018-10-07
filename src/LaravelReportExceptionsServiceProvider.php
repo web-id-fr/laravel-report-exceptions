@@ -73,6 +73,6 @@ class LaravelReportExceptionsServiceProvider extends ServiceProvider
     {
         $publishConfig = $this->getConfigFiles();
 
-        $this->mergeConfigFrom(head($publishConfig), 'report-exceptions');
+        $this->mergeConfigFrom(key($publishConfig), 'report-exceptions');
     }
 }
