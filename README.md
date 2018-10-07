@@ -1,5 +1,5 @@
 # Laravel Report Exceptions
-A simple Laravel 5+ package to report non-catched exceptions by mail.
+A simple Laravel 5+ package to report non-catched exceptions by (responsive) mail.
 
 ## Installation
 
