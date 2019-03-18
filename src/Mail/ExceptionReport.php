@@ -78,7 +78,7 @@ class ExceptionReport extends Mailable
                 'filename' => $this->filename,
                 'line' => $this->line,
                 'error_url' => $this->url,
-                'server_vars' => $config['show-dotenv'] ? $_SERVER : array_diff_key($_SERVER, getenv()),
+                'server_vars' => $config['show-dotenv'] ? $_SERVER : array_diff_key($_SERVER, $_ENV),
                 'error_time' => $this->time->format($config['time-format']),
                 'theme' => $config['theme'],
             ]);
