@@ -16,7 +16,14 @@ This command will publish the following files :
  * A configuration file (`/config/report-exceptions.php`)
  * Translations files (`/resources/lang/*/report.php`)
  * The email template (`/resources/views/vendor/report-exceptions/email.blade.php`)
-### 3. Update file `bootstrap/app.php`  
+### 3. Activate the exceptions report
+You have two ways to do it :<br>
+ * You can simply update the `bootstrap/app.php` file to load the package exceptions handler : <br>**=> go to section 3.1**
+ * You can directly update the `app\Exceptions\Handler.php` : <br>**=> go to section 3.2**
+ 
+
+#### 3.1. Update file `bootstrap/app.php`
+  
 In this file, change the following part :
 ```
 $app->singleton(
@@ -30,6 +37,30 @@ $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
     \WebID\LaravelReportExceptions\Exceptions\Handler::class
 );
+```
+
+#### 3.2. Update file `app/Exceptions/Handler.php`
+
+In this file, import and use the `CanReportExceptions` trait :
+```
+import WebID\LaravelReportExceptions\Traits\CanReportExceptions;
+
+...
+
+use CanReportExceptions;
+```
+
+Then, in the `report()` method, add the following code at the beginning :
+
+```
+public function report(Exception $exception)
+{
+    $this->reportByEmail($exception);
+    
+    // Your code here
+    
+    parent::report($exception);
+}
 ```
 
 ### 4. Update file `.env`

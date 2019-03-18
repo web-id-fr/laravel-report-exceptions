@@ -3,17 +3,15 @@
 namespace WebID\LaravelReportExceptions\Mail;
 
 use Carbon\Carbon;
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Collection;
 use Throwable;
 
-class ExceptionReport extends Mailable implements ShouldQueue
+class ExceptionReport extends Mailable
 {
-    use Queueable, SerializesModels;
+    use SerializesModels;
 
     /** @var string The error message */
     protected $message;
@@ -40,7 +38,7 @@ class ExceptionReport extends Mailable implements ShouldQueue
      * ExceptionReport constructor.
      *
      * @param Throwable $throwable
-     * @param Request $request
+     * @param Request   $request
      */
     public function __construct(Throwable $throwable, Request $request)
     {
@@ -49,7 +47,7 @@ class ExceptionReport extends Mailable implements ShouldQueue
                 'file' => $item['file'] ?? '',
                 'line' => $item['line'] ?? '',
                 'class' => $item['class'] ?? '',
-                'type' => $item['type']?? '',
+                'type' => $item['type'] ?? '',
                 'function' => $item['function'] ?? '{closure}',
             ];
         });

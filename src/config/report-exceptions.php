@@ -55,6 +55,25 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Use Queues system
+    |--------------------------------------------------------------------------
+    |
+    | Determines if you want to use the Laravel Queues system or not
+    | Disabling this option can be useful if you want to be able to report
+    | exceptions even if your queue driver is down (Supervisor, ...)
+    |
+    | Supported:
+    |   A boolean value
+    |
+    | Default:
+    |   REPORT_USE_QUEUES=true
+    |
+    */
+
+    'use-queues' => env('REPORT_USE_QUEUES', true),
+
+    /*
+    |--------------------------------------------------------------------------
     | Show .env constants
     |--------------------------------------------------------------------------
     |
