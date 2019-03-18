@@ -5,7 +5,7 @@ A simple Laravel 5+ package to report non-catched exceptions by (responsive) mai
 
 ### 1. Require the package
 ```
-composer require web-id-fr/laravel-report-exceptions:~1.0
+composer require web-id-fr/laravel-report-exceptions
 ```
 
 ### 2. Publish assets / config / lang files 
