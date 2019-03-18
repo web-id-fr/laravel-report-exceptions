@@ -4,6 +4,23 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Exceptions to ignore
+    |--------------------------------------------------------------------------
+    |
+    | A list of exceptions to ignore
+    |
+    | Supported:
+    |   An array
+    |
+    */
+
+    'ignored-exceptions' => [
+        \Symfony\Component\HttpKernel\Exception\NotFoundHttpException::class,
+        // Feel free to add / remove entries here
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Email subject
     |--------------------------------------------------------------------------
     |

@@ -19,12 +19,29 @@ trait CanReportExceptions
         $recipient = config('report-exceptions.email-to');
         $useQueues = config('report-exceptions.use-queues');
 
-        if (!empty($recipient)) {
+        $skipException = $this->dontReportException($exception);
+
+        if (!empty($recipient) && !$skipException) {
             if (true == $useQueues) {
                 Mail::to($recipient)->send(new QueueableExceptionReport($exception, request()));
             } else {
                 Mail::to($recipient)->send(new ExceptionReport($exception, request()));
             }
         }
+    }
+
+    /**
+     * Determines if the given Exception must be reported or not
+     *
+     * @param \Throwable $exception
+     *
+     * @return bool
+     */
+    public function dontReportException(\Throwable $exception)
+    {
+        $class = get_class($exception);
+        $exceptionsToSkip = config('report-exceptions.ignored-exceptions', []);
+
+        return in_array($class, $exceptionsToSkip);
     }
 }

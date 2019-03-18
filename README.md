@@ -10,7 +10,7 @@ composer require web-id-fr/laravel-report-exceptions
 
 ### 2. Publish assets / config / lang files 
 ```
-php artisan vendor:publish --provider="WebID\LaravelReportExceptions\LaravelReportExceptionsServiceProvider"
+php artisan vendor:publish --provider="WebID\LaravelReportExceptions\LaravelReportExceptionsServiceProvider" --force
 ```
 This command will publish the following files :
  * A configuration file (`/config/report-exceptions.php`)
